@@ -12,6 +12,7 @@
 }
 
 .light {
+  color-scheme: light;
   --clr-background-color: #fff;
   --clr-text-color: black;
   --clr-box-shadow: rgba(0, 0, 0, .1);
@@ -20,6 +21,7 @@
 }
 
 .dark {
+  color-scheme: dark;
   --clr-background-color: #050505;
   --clr-text-color: white;
   --clr-box-shadow: #A445ED;
