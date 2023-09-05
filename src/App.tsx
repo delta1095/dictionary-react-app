@@ -58,8 +58,6 @@ function App() {
     );
     const data = await response.json();
 
-    console.log(data);
-
     setResult(data);
   };
 
@@ -90,17 +88,17 @@ function App() {
 
         <div>
           {Array.isArray(result) ? (
-            result.map(({ word, phonetics, meanings, sourceUrls }) => (
-              <div className="content">
+            result.map(({ word, phonetics, meanings, sourceUrls }, index) => (
+              <div key={index} className="content">
                 <div className="header">
                   <div>
                     <div className="title">{word}</div>
 
                     {phonetics.map(
-                      ({ audio, text }) =>
+                      ({ audio, text }, index) =>
                         audio &&
                         text && (
-                          <div className="pronunciation">
+                          <div className="pronunciation" key={index}>
                             <span>{text}</span>
                             <img
                               src={"/icon-play.svg"}
@@ -141,7 +139,7 @@ function App() {
                               <div className="subtitle">Synonyms</div>
                               <div className="alt-text">
                                 {synonyms.map((word) => (
-                                  <span>"{word}" </span>
+                                  <span key={word}>"{word}" </span>
                                 ))}
                               </div>
                             </div>
@@ -152,15 +150,13 @@ function App() {
                   )}
                 </div>
                 <div className="sources">
-                  {sourceUrls.map((sourceUrl) => (
-                    <>
-                      <div className="text">
-                        Source:{" "}
-                        <a href={sourceUrl} target="_blank">
-                          Wikipedia
-                        </a>
-                      </div>
-                    </>
+                  {sourceUrls.map((sourceUrl, index) => (
+                    <div key={`${sourceUrl}-${index}`} className="text">
+                      Source:{" "}
+                      <a href={sourceUrl} target="_blank" rel="noreferrer">
+                        Wikipedia
+                      </a>
+                    </div>
                   ))}
                 </div>
               </div>
